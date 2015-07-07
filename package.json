@@ -1,0 +1,12 @@
+{
+  "name": "text-riley-ai",
+  "description": "Text message AI for TextRiley",
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "express": "^4.13.0",
+    "moment": "^2.10.3",
+    "parse": "^1.4.2",
+    "twilio": "^2.2.1",
+    "underscore": "^1.8.3"
+  }
+}
