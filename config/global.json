@@ -1,0 +1,17 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "TextRiley": {
+      "applicationId": "Es8deGxZvGQBZJLClhbhb0AhKfHW4GOLtbOpkLlf",
+      "masterKey": "gTbPLI6z35fNWD3GwO9Q5cd0BR1RbZ1aevYT9Iei"
+    },
+    "_default": {
+      "link": "TextRiley"
+    },
+    "textriley-autoresponder": {
+      "link": "TextRiley"
+    }
+  }
+}
