@@ -2,8 +2,12 @@
   "name": "text-riley-ai",
   "description": "Text message AI for TextRiley",
   "dependencies": {
+    "backbone": "^1.2.1",
     "bluebird": "^2.9.30",
+    "body-parser": "^1.13.2",
     "express": "^4.13.0",
+    "handlebars": "^3.0.3",
+    "jquery": "^2.1.4",
     "moment": "^2.10.3",
     "parse": "^1.4.2",
     "twilio": "^2.2.1",

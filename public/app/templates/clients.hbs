@@ -1,0 +1,13 @@
+<table>
+	<tr>
+		<th> Phone </th>
+		<th> Actions </th>
+	</tr>
+
+	{{#each clients}}
+	<tr>
+		<td>{{phoneNumber}} </td>
+		<td><a class="view-texts" href="/clients/{{objectId}}">view texts</a></td>
+	</tr>
+	{{/each}}
+</table>
