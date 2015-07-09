@@ -1,0 +1,124 @@
+/*
+Client: textriley.com
+Developer: Jeffrey Valdehueza (www.dyeprey.com)
+Date: 07.09.2015
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+
+html,body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/*********** TYPOGRAPHY **********/
+
+
+h1 {
+  font-size: 4em;
+  font-weight: 700;
+}
+h2 {
+  font-size: 3em;
+}
+h3 {
+  font-size: 1.7em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.3em;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9em;
+}
+
+a,a:hover {
+  text-decoration: none;
+}
+
+/*********** GLOBALS **********/
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  margin: 50px 0;
+}
+
+.bordered {
+  border: 1px solid #f5f5f5;
+}
+
+.label {
+  font-size: .8em !important;
+}
+
+/*********** ELEMENTS **********/
+.panel {
+  p {
+    font-size: 0.6em;
+  }
+}
+/*********** SECTIONS **********/
+.section-title {
+
+  text-align: center;
+}
+.main {
+  .content {
+    padding-top: 50px;
+    border: 1px solid #f5f5f5;
+
+    form {
+      padding: 25px;
+      .input-group {
+        width: 100%;
+      }
+    }
+
+    .item {
+      border: 1px solid #f5f5f5;
+      button {
+        margin: 15px 0;
+      }
+    }
+  }
+}
+
+.leads
+{
+  .lead {
+    //
+  }
+  .info {
+    text-align: center;
+    padding: 5px;
+    background-color: #337AB7;
+    margin-top: 20px;
+    border-radius: 15px;
+    &:first-of-type {
+      background-color: #f5f5f5;
+    }
+  }
+  ul {
+    li {
+      //
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #cccccc;
+  background: #f5f5f5;
+  padding: 10px 0;
+}
+
