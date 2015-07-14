@@ -29,9 +29,10 @@ var app = module.exports = {
         var app = express();
 
         app.use(express.static(__dirname + '/public'));
-       	app.use(bodyParser.json())
+       	app.use(bodyParser.json());
         
         app.get('/api/v1/refreshMessages', _.bind(this.refreshMessages, this));
+        app.get('/api/v1/newMessage', _.bind(this.newMessage, this));
         app.get('/api/v1/clients', _.bind(this.getClients, this));
         app.get('/api/v1/clients/*', _.bind(this.getClient, this));
         app.get('/api/v1/textMessages/*',  _.bind(this.getTextMessages, this));
@@ -41,9 +42,16 @@ var app = module.exports = {
 			response.sendFile(__dirname + '/public/index.html');
 		});
 
+		var http = require('http').Server(app);
+		var io = require('socket.io')(http);
+		
+		io.on('connection', _.bind(function (socket) {
+		  this.socket = socket;
+		}, this));
+
 		setInterval(_.bind(this.refreshMessages, this), 10000);
 
-        this.server = app.listen(3000);
+        this.server = http.listen(3000);
     },
 
     error: function (res, reason) {
@@ -55,11 +63,17 @@ var app = module.exports = {
 
     refreshMessages: function (req, res) {
         Promise.all([
-                twilioClient.messages.list(), 
+                twilioClient.messages.list({
+                	DateCreated: moment().format('YYYY-MM-DD')
+                }), 
                 (new Parse.Query(TextMessage)).find(),
                 (new Parse.Query(Client)).find()
             ])
             .then(_.bind(this.processNewMessages, this))
+    },
+
+    newMessage: function (req, res) {
+    	console.log(req.params)
     },
 
     getClients: function (req, res) {
@@ -155,6 +169,8 @@ var app = module.exports = {
         this.messages = data[1];
         this.clients = data[2];
 
+        var newMessages = [];
+
         Promise.map(twilioTexts.messages, _.bind(function(message) {
             var number = message.from === myNumber ? message.to : message.from;
 
@@ -164,8 +180,21 @@ var app = module.exports = {
             	phoneNumber: number
             }).then(_.bind(
             	this.createMessage, this, message
-            ));
-        }, this));
+            )).then(_.bind(function (messageCreated) {
+            	var newMessage = moment().diff(messageCreated.createdAt) < 1000;
+            	
+            	if (!newMessage) return;
+            	
+            	newMessages = newMessages.concat(messageCreated);
+            }, this));
+        }, this))
+        	.then(_.bind(function() {
+            	if (!this.socket || !newMessages.length) return
+
+            		console.log(newMessages)
+
+            	this.socket.emit('messages', newMessages);
+            }, this));
     },
 };
 

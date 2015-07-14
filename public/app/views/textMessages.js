@@ -25,6 +25,11 @@ module.exports = Backbone.View.extend({
 			clientId: options.clientId
 		});
 
+		options.socket.on('messages', _.bind(function (messages) {
+			console.log('hih', messages)
+			this.textMessages.add(messages);
+		}, this))
+
 		this.listenTo(this.textMessages, 'add', _.bind(this.render, this, 'loaded'));
 	},
 
